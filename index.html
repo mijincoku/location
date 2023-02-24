@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>AR.js + A-Frame</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/ar.js@3.3.2"></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>GeoAR.js demo</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
   </head>
-  <body style="margin: 0;">
-    <a-scene embedded arjs="debugUIEnabled: false;">
-      <a-assets>
-        <img id="yoichi" src="yoichi.png">
-      </a-assets>
-      <a-marker preset="custom" type="pattern" url="hiro.patt" position="24.340318944858634 1 124.15832977742033" smooth="true">
-        <a-plane src="#yoichi" rotation="0 180 0" width="1" height="1" look-at="[camera]"></a-plane>
-      </a-marker>
-      <a-entity camera></a-entity>
+
+  <body>
+    <a-scene
+      vr-mode-ui="enabled: false"
+      arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
+    >
+      <a-text
+        value="This content will always face you."
+        look-at="[gps-camera]"
+        scale="120 120 120"
+        gps-entity-place="latitude:24.340317722960265; longitude:124.15838744491454;"
+      ></a-text>
+      <a-camera gps-camera rotation-reader> </a-camera>
     </a-scene>
   </body>
 </html>
